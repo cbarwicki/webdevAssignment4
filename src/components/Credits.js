@@ -1,10 +1,8 @@
-// src/components/Debits.js
-
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import AccountBalance from './AccountBalance'
 
-class Debits extends Component {
+class Credits extends Component {
 
     constructor () {  // Create and initialize state
         super()
@@ -34,10 +32,10 @@ class Debits extends Component {
         this.setState({amount: updatedAmount})
     }
 
-    // When user clicked submit button, store debits data and then redirect to debitss page
+    // When user clicked submit button, store credit data and then redirect to Credits page
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.addDebit(this.state.description, this.state.amount)
+        this.props.addCredit(this.state.description, this.state.amount)
         this.setState({redirect: true})
     }
 
@@ -48,7 +46,7 @@ class Debits extends Component {
     
         return (
             <div>
-            <h1>Your Debits</h1>
+            <h1>Your Credits</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label htmlFor="description">Description</label>
@@ -58,11 +56,11 @@ class Debits extends Component {
                         <label htmlFor="amount">Amount</label>
                         <input type="text" name="amount" onChange={this.handleChangeAmount} value={this.state.amount} />
                     </div>
-                    <button>Add Debit</button>
+                    <button>Add Credit</button>
                 </form>
                 <AccountBalance accountBalance={this.props.accountBalance}/>
             {
-                this.props.debits.map( (entry) => {
+                this.props.credits.map( (entry) => {
                     return (
                         <div>
                             <p>Description: {entry.description}</p>
@@ -78,4 +76,4 @@ class Debits extends Component {
     }
 }
 
-export default Debits;
+export default Credits;
